@@ -2,95 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Press+Start+2P&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Space theme colors */
+    --background: 222 47% 6%;
+    --foreground: 200 100% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 222 47% 10%;
+    --card-foreground: 200 100% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 222 47% 10%;
+    --popover-foreground: 200 100% 95%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 222 47% 6%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 280 70% 50%;
+    --secondary-foreground: 200 100% 95%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 222 30% 20%;
+    --muted-foreground: 200 50% 70%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 45 100% 55%;
+    --accent-foreground: 222 47% 6%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 80% 55%;
+    --destructive-foreground: 200 100% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 222 30% 25%;
+    --input: 222 30% 25%;
+    --ring: 180 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Game specific colors */
+    --player-ship: 180 100% 50%;
+    --player-glow: 180 100% 70%;
+    --enemy-primary: 15 90% 55%;
+    --enemy-secondary: 0 85% 50%;
+    --bullet-color: 45 100% 60%;
+    --bullet-glow: 45 100% 80%;
+    --star-color: 0 0% 100%;
+    --health-color: 0 85% 55%;
+    --score-color: 45 100% 60%;
+    --space-dark: 222 47% 4%;
+    --space-medium: 222 47% 8%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Gradients */
+    --gradient-space: linear-gradient(180deg, hsl(240 50% 3%) 0%, hsl(222 47% 8%) 50%, hsl(280 40% 10%) 100%);
+    --gradient-player: linear-gradient(180deg, hsl(180 100% 60%) 0%, hsl(180 100% 40%) 100%);
+    --gradient-enemy: linear-gradient(180deg, hsl(15 90% 60%) 0%, hsl(0 85% 45%) 100%);
+    --gradient-ui: linear-gradient(135deg, hsl(280 70% 50%) 0%, hsl(180 100% 50%) 100%);
   }
 }
 
@@ -101,5 +65,108 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Orbitron', sans-serif;
   }
+}
+
+@layer components {
+  .game-title {
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 
+      0 0 10px hsl(var(--primary)),
+      0 0 20px hsl(var(--primary)),
+      0 0 40px hsl(var(--primary) / 0.5);
+  }
+
+  .game-subtitle {
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+  }
+
+  .game-button {
+    @apply px-8 py-4 text-lg font-bold uppercase tracking-wider;
+    @apply bg-gradient-to-r from-primary to-secondary;
+    @apply text-primary-foreground rounded-lg;
+    @apply border-2 border-primary/50;
+    @apply shadow-[0_0_20px_hsl(var(--primary)/0.5)];
+    @apply hover:shadow-[0_0_30px_hsl(var(--primary)/0.8)];
+    @apply hover:scale-105 transition-all duration-200;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.875rem;
+  }
+
+  .game-button:active {
+    @apply scale-95;
+  }
+
+  .game-panel {
+    @apply bg-card/80 backdrop-blur-sm;
+    @apply border border-primary/30 rounded-xl;
+    @apply shadow-[0_0_30px_hsl(var(--primary)/0.2)];
+  }
+
+  .score-display {
+    font-family: 'Press Start 2P', cursive;
+    @apply text-accent;
+    text-shadow: 0 0 10px hsl(var(--accent));
+  }
+
+  .lives-heart {
+    filter: drop-shadow(0 0 5px hsl(var(--destructive)));
+  }
+
+  .glow-text {
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 20px currentColor;
+  }
+}
+
+@layer utilities {
+  .animate-twinkle {
+    animation: twinkle 2s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 1.5s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    filter: drop-shadow(0 0 5px hsl(var(--primary)));
+  }
+  50% { 
+    filter: drop-shadow(0 0 20px hsl(var(--primary)));
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes star-move {
+  from { transform: translateY(-10px); }
+  to { transform: translateY(100vh); }
 }
