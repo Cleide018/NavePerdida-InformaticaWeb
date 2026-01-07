@@ -1,10 +1,10 @@
-import { GameCanvas } from '@/components/game/GameCanvas';
-
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <GameCanvas />
-    </div>
+    <iframe 
+      src="/nave-perdida.html" 
+      className="w-full h-screen border-0"
+      title="Nave Perdida - Space Shooter Game"
+    />
   );
 };
 
